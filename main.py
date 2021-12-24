@@ -1,19 +1,19 @@
 from flask import Flask, jsonify, abort
 import json
 
-app = Flask(__name__)
+main = Flask(__name__)
 
-@app.route("/")
-def index():
+@main.route("/hello")
+def hello():
     abort(404, 'hello abort')
     return jsonify({'message': 'error code 404'})
 
-@app.errorhandler(404)
+@main.errorhandler(404)
 def error_404(e):
     print('httpステータス:{}, メッセージ:{}, 詳細:{}'.format(e.code, e.name, e.description))
     return jsonify({'message': 'internal server error', 'action': 'call me'}), 404
 
-@app.route("/api/v1/hello")
+@main.route("/api/v1/hello")
 def hello():
     return jsonify({
         "message": "Hello World!"
