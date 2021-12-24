@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def welcome():
-    
+    theme = application.config['THEME']
+    return flask.render_template('index.html', theme=theme, flask_debug=application.debug)
 
 @app.route("/hello")
 def hello():
